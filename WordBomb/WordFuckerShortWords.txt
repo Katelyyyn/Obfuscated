@@ -1,24 +1,3 @@
-local cmdp = game:GetService("Players")
-local MOTHAFUCKER = cmdp.LocalPlayer
-	local StarterGui = game:GetService("StarterGui")
-	StarterGui:SetCore("ChatMakeSystemMessage", {
-		Text = "Thanks for using Шатура's scripts, "..MOTHAFUCKER.Name..".";
-		Color = Color3.fromRGB(255, 0 , 0);
-		Font = Enum.Font.SourceSansBold;TextSize = 25
-	})
-	StarterGui:SetCore("ChatMakeSystemMessage", {
-		Text = "Please ruin everyones fun. THANK YOU!";
-		Color = Color3.fromRGB(0, 255, 0);
-		Font = Enum.Font.SourceSansBold;
-		TextSize = 20
-	})
-	wait(0.5)
-game.StarterGui:SetCore("SendNotification", {
-Title = "Thanks for using me!"; -- the title (ofc)
-Text = "Your a bitch ass nigga..."; -- what the text says (ofc)
-Icon = "rbxassetid://2899437269"; -- the image if u want. 
-Duration = 5; -- how long the notification should in secounds
-})
 local sg = false
 local autoplay = false
 local mode = 'legit'
