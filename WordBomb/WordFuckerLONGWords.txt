@@ -1,10 +1,8 @@
 local cmdp = game:GetService("Players")
-local cmdlp = cmdp.LocalPlayer
---------------------------------------|
--- Print Function: --------------------|
+local MOTHAFUCKER = cmdp.LocalPlayer
 	local StarterGui = game:GetService("StarterGui")
 	StarterGui:SetCore("ChatMakeSystemMessage", {
-		Text = "Thanks for using Шатура's scripts, "..cmdlp.Name..".";
+		Text = "Thanks for using Шатура's scripts, "..MOTHAFUCKER.Name..".";
 		Color = Color3.fromRGB(255, 0 , 0);
 		Font = Enum.Font.SourceSansBold;TextSize = 25
 	})
