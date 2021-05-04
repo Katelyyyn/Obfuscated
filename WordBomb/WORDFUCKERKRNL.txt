@@ -1,4 +1,4 @@
-if KRNL_Loaded then
+if KRNL_LOADED then
 local sg = false
 local autoplay = false
 local mode = 'legit'
@@ -170,7 +170,7 @@ spawn(function()
             update()
         end
     end
-end) 
+end)
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/KRNL.txt", true))()
 local min = library:CreateWindow('Word Bomb')
 local ap = min:AddFolder('Autoplay')
@@ -194,6 +194,7 @@ end})
 sg:AddSlider({text = 'Refresh (in s)',value = 0.5, min = 0,max = 2,float = 0.1,callback = function(v)
     updatewait = v
 end})
-library:Init
-else game.Players.LocalPlayer:kick("this is not KRNL")
-    end
+library:Init()
+--nigga
+else game.Players.LocalPlayer:Kick("This is not KRNL Exploit")
+end
