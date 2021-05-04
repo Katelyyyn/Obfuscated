@@ -169,9 +169,9 @@ spawn(function()
             update()
         end
     end
-end) 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/WordRememberAPI.txt", true))() 
+end)
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/library.txt", true))()
+local WRAPI =loadstring(game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/WordRememberAPI.txt", true))() 
 local min = library:CreateWindow('Word Bomb')
 local ap = min:AddFolder('Autoplay')
 ap:AddToggle({text = 'toggle',state = false,callback = function(s)
@@ -195,3 +195,5 @@ sg:AddSlider({text = 'Refresh (in s)',value = 0.5, min = 0,max = 2,float = 0.1,c
     updatewait = v
 end})
 library:Init()
+WRAPI:Init()
+--nigga
