@@ -1,0 +1,198 @@
+local sg = false
+local autoplay = false
+local mode = 'legit'
+local maxcooldown = 50
+local lwait = 0.500
+local updatewait = 0.5
+local usedwords = {}
+local number = 0
+function grabtext()
+    local frames = game:service('Players').LocalPlayer.PlayerGui.GameUI.Container.GameSpace.DefaultUI.GameContainer.DesktopContainer.InfoFrameContainer.InfoFrame.TextFrame
+    local s = ''
+    for a,v in next, frames:GetChildren() do
+        pcall(function()
+            if v.Letter.ImageColor3 ~= Color3.fromRGB(255,255,255) then
+                s = s .. v.Letter.TextLabel.Text
+            end
+        end)
+    end
+    return s
+end
+
+local loadWords = game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/LongNigusWords.txt")
+--https://raw.githubusercontent.com/fukaina/bylength/main/6
+local pwords = string.split(loadWords,"\n")
+local loadsub1 = game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/wb1.txt")
+local sub1list = string.split(loadsub1, "\n")
+local mt = getrawmetatable(game)
+local oldmt = mt.__namecall 
+setreadonly(mt,false)
+mt.__namecall = newcclosure(function(self,...)
+    local method,args = getnamecallmethod(),{...}
+    if tostring(method) == 'FireServer' and tostring(self) == 'GameEvent' and args[2] == 'TypingEvent' then
+        table.insert(usedwords,args[3]:lower())
+        number = args[1]
+    elseif tostring(method) == 'FireServer' and tostring(self) == 'GameEvent' and args[2] == 'JoinGame' then
+        usedwords = {}
+        number = (args[1] - 1)
+    end
+    return oldmt(self,unpack(args))
+end)
+setreadonly(mt,true)
+function turncheck()
+    local mt = false
+    pcall(function()
+        local pl = game:service('Players').LocalPlayer
+        local mainui = pl.PlayerGui.GameUI.Container.GameSpace.DefaultUI.GameContainer
+        local triggerword = 'Quick! Type an English word containing:'
+        if mainui.DesktopContainer.InfoFrameContainer.InfoFrame.Title.Text == triggerword then 
+            mt = true
+        end
+    end)
+    return mt    
+end
+spawn(function()
+    while true do
+        wait()
+        if autoplay then
+            if mode == 'rage' then
+                wait()
+                if turncheck() then
+                    for a,v in next, pwords do
+                        if v:find(string.lower(grabtext())) and not table.find(usedwords,v:lower()) then
+                            game:service('ReplicatedStorage').Network.Games.GameEvent:FireServer(number,'TypingEvent',v:upper(),true)
+                            wait(0.1)
+                            break 
+                        end
+                    end
+                end
+            elseif mode == 'legit' then
+                local function rnum()
+                    local num = 0
+                    for a=1,3 do
+                        if num < 0.5 then
+                            num = num + tonumber('0.'..tostring(math.random(0,maxcooldown)))
+                        elseif num < 0 then
+                            repeat
+                                num = num + tonumber('0.'..tostring(math.random(0,maxcooldown)))
+                            until num > 0
+                        elseif num > 0.5 then
+                            num = num - tonumber('0.'..tostring(math.random(0,maxcooldown)))
+                        end
+                    end
+                    if num > 0.5 then
+                        repeat
+                            num = num - 0.01
+                        until num < 0.5
+                    elseif num < 0 then
+                        repeat
+                            num = num + 0.01
+                        until num > 0
+                    end
+                    return num
+                end
+                wait()
+                if turncheck() then
+                    for a,v in next, pwords do
+                        if v:find(grabtext():lower()) and not table.find(usedwords,v:lower()) then
+                            wait(lwait)
+                            local d = v:split('')
+                            local s = ''
+                            for a,v in next, d do
+                                wait(rnum())
+                                s = s .. v:upper()
+                                if d[a+1] then
+                                    pcall(function()
+                                        game:service('Players').LocalPlayer.PlayerGui.GameUI.Container.GameSpace.DefaultUI.GameContainer.DesktopContainer.Typebar.Typebox.Text = s
+                                        keypress(0x20)
+                                        wait()
+                                        keyrelease(0x20)
+                                    end)
+                                else
+                                    game:service('ReplicatedStorage').Network.Games.GameEvent:FireServer(number,'TypingEvent',s,true)
+                                end
+                            end
+                            wait(0.1)
+                            break
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+local suggestion = Drawing.new('Text')
+suggestion.Position = Vector2.new(workspace.CurrentCamera.ViewportSize.X/2-500,workspace.CurrentCamera.ViewportSize.Y-100)
+suggestion.Size = 25
+suggestion.Color = Color3.new(1,1,1)
+suggestion.Visible = false
+suggestion.Text = 'suggestion: N/A'
+function update()
+    local function gtext()
+        local text
+        pcall(function()
+            text = game:service('Players').LocalPlayer.PlayerGui.GameUI.Container.GameSpace.DefaultUI.GameContainer.DesktopContainer.Typebar.Typebox.Text
+        end)
+        return text or false
+    end
+    local text = gtext()
+    local aw = 0
+    if text then
+        if turncheck() then
+            for a,v in next, pwords do
+                aw = aw + 1
+                if v:find(string.lower(grabtext())) and v:find(text:lower()) then
+                    print(v)
+                    if not table.find(usedwords,v:lower()) then
+                        suggestion.Text = 'suggestion: '..v
+                        break 
+                    else
+                        suggestion.Text = 'suggestion: [word already used <'..v..'>]'
+                    end
+                end
+            end
+            if aw == #pwords then
+                suggestion.Text = 'suggestion: [couldnt find matching text!]'
+            end
+        else
+            suggestion.Text = 'suggestion: [not your turn!]'
+        end
+    else
+        suggestion.Text = 'suggestion: [N/A]'
+    end
+end
+spawn(function()
+    while true do 
+        wait()
+        if sg then
+            wait(updatewait)
+            update()
+        end
+    end
+end) 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/WordRememberAPI.txt", true))() 
+library = loadstring(syn.request({Url = 'https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/library.txt',Method = 'GET'}).Body)()
+local min = library:CreateWindow('Word Bomb')
+local ap = min:AddFolder('Autoplay')
+ap:AddToggle({text = 'toggle',state = false,callback = function(s)
+    autoplay = s
+end})
+ap:AddList({text = 'Mode',value = 'Legit',values = {'Rage'},callback = function(v)
+    mode = v:lower()
+end})
+ap:AddSlider({text = 'Legit mode delay',value = 50,min = 0,max = 250,float = 1,callback = function(v)
+    maxcooldown = v
+end})
+ap:AddSlider({text = 'Legit mode wait',value = 0.500,min = 0,max = 1.5,float = 0.0001,callback = function(v)
+    lwait = v
+end})
+local sg = min:AddFolder('Suggestion')
+sg:AddToggle({text = 'Toggle',state = false,callback = function(s)
+    sg = s
+    suggestion.Visible = s
+end})
+sg:AddSlider({text = 'Refresh (in s)',value = 0.5, min = 0,max = 2,float = 0.1,callback = function(v)
+    updatewait = v
+end})
+library:Init()
+--nigga
