@@ -1,7 +1,4 @@
-if KRNL_Loaded then
-game.Players.LocalPlayer:kick("this is not KRNL")
-end
-else pcall(function()
+pcall(function()
     game:GetService('CoreGui')['bluhub']:Destroy()
 end)
 
