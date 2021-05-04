@@ -1,3 +1,4 @@
+if KRNL_Loaded then
 local sg = false
 local autoplay = false
 local mode = 'legit'
@@ -170,8 +171,7 @@ spawn(function()
         end
     end
 end) 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/WordRememberAPI.txt", true))() 
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/library.txt", true))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/KRNL.txt", true))()
 local min = library:CreateWindow('Word Bomb')
 local ap = min:AddFolder('Autoplay')
 ap:AddToggle({text = 'toggle',state = false,callback = function(s)
@@ -194,5 +194,6 @@ end})
 sg:AddSlider({text = 'Refresh (in s)',value = 0.5, min = 0,max = 2,float = 0.1,callback = function(v)
     updatewait = v
 end})
-library:Init()
---nigga
+library:Init
+else game.Players.LocalPlayer:kick("this is not KRNL")
+    end

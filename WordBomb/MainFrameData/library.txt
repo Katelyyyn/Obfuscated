@@ -1,3 +1,7 @@
+if KRNL_Loaded then
+game.Players.LocalPlayer:kick("this is not KRNL")
+end
+else
 pcall(function()
     game:GetService('CoreGui')['bluhub']:Destroy()
 end)
@@ -1659,5 +1663,7 @@ inputService.InputChanged:connect(function(input)
 		update(input)
 	end
 end)
+end
 
 return library
+ 

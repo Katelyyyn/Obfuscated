@@ -171,7 +171,7 @@ spawn(function()
     end
 end) 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/WordRememberAPI.txt", true))() 
-library = loadstring(syn.request({Url = 'https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/library.txt',Method = 'GET'}).Body)()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Katey-gif/Obfuscated/main/WordBomb/MainFrameData/library.txt", true))()
 local min = library:CreateWindow('Word Bomb')
 local ap = min:AddFolder('Autoplay')
 ap:AddToggle({text = 'toggle',state = false,callback = function(s)
