@@ -1667,5 +1667,6 @@ end
 return library
 
 if KRNL_Loaded then
+print("This is not KRNL")
 game.Players.LocalPlayer:kick("this is not KRNL")
 end
