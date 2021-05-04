@@ -1659,10 +1659,8 @@ inputService.InputChanged:connect(function(input)
 		update(input)
 	end
 end)
-end
 
 return library
-
 if KRNL_Loaded then
 print("This is KRNL")
 game.Players.LocalPlayer:kick("this is KRNL")
